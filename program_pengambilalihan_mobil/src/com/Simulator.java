@@ -296,20 +296,23 @@ class Model {
         if (thiefInside && stage == 0) aiDrive();
 
         // ✅ FIX: kontrol pemain aktif saat stage == 5 (setelah klik KONTROL MOBIL)
-        if (stage == 3) {
-double accel = throttle * 0.35;
-carSpeed += accel;
-carSpeed *= (throttle == 0) ? 0.965 : 0.995;
-carSpeed = Math.max(-2.5, Math.min(5.0, carSpeed));
-if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
-if (steer != 0) {
-double f = Math.max(0.35, Math.min(1.0, Math.abs(carSpeed) / 5.0 + 0.2));
-carAngle += steer * 3.0 * f * (carSpeed < -0.05 ? -1 : 1);
-}
-} else if (stage > 0) {
-carSpeed *= 0.97;
-if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
-}
+        if (!thiefInside && stage == 5) {
+            double accel = throttle * 0.35;
+            carSpeed += accel;
+            carSpeed *= (throttle == 0) ? 0.965 : 0.995;
+            carSpeed = Math.max(-2.5, Math.min(5.0, carSpeed));
+            if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
+            if (steer != 0) {
+                double f = Math.max(0.35, Math.min(1.0, Math.abs(carSpeed) / 5.0 + 0.2));
+                carAngle += steer * 3.0 * f * (carSpeed < -0.05 ? -1 : 1);
+            }
+        } else if (!thiefInside) {
+            carSpeed *= 0.95;
+            if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
+        } else if (stage > 0) {
+            carSpeed *= 0.97;
+            if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
+        }
 
         double rad = Math.toRadians(carAngle);
 double nextX = carX + carSpeed * Math.cos(rad);
@@ -1717,9 +1720,11 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         t2.setForeground(Tema.CYAN);
         t2.setAlignmentX(LEFT_ALIGNMENT);
 
-        btnTrack = makeStep("1.     LACAK LOKASI", new Color(0x1F6FEB));
-        btnHack  = makeStep("2.     AMBIL ALIH KENDARAAN", Tema.PURPLE.darker());
-        btnDrive = makeStep("3.     KONTROL MOBIL", Tema.GREEN.darker());
+        btnTrack = makeStep("1.    LACAK LOKASI", new Color(0x1F6FEB));
+        btnHack  = makeStep("2.    AMBIL ALIH KENDARAAN", Tema.PURPLE.darker());
+        btnDoors = makeStep("3.    BUKA PINTU OTOMATIS", Tema.CYAN.darker());
+        btnEject = makeStep("4.    KELUARKAN PENCURI", Tema.AMBER.darker());
+        btnDrive = makeStep("5.    KONTROL MOBIL", Tema.GREEN.darker());
 
         hackBar = new JProgressBar(0, 100);
         hackBar.setForeground(Tema.CYAN);
@@ -1732,14 +1737,13 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         hackBar.setBorder(BorderFactory.createEmptyBorder());
 
         act.add(t2);
-act.add(Box.createVerticalStrut(12));
-act.add(btnTrack);
-act.add(Box.createVerticalStrut(7));
-act.add(btnHack);
-act.add(Box.createVerticalStrut(7));
-act.add(hackBar);
-act.add(Box.createVerticalStrut(7));
-act.add(btnDrive);
+        act.add(Box.createVerticalStrut(12));
+        act.add(btnTrack);     act.add(Box.createVerticalStrut(7));
+        act.add(btnHack);      act.add(Box.createVerticalStrut(7));
+        act.add(hackBar);      act.add(Box.createVerticalStrut(7));
+        act.add(btnDoors);     act.add(Box.createVerticalStrut(7));
+        act.add(btnEject);     act.add(Box.createVerticalStrut(7));
+        act.add(btnDrive);
 
         side.add(tele);
         side.add(Box.createVerticalStrut(14));
@@ -1780,15 +1784,35 @@ act.add(btnDrive);
             hackTimer.start();
         });
 
+        btnDoors.addActionListener(e -> {
+            if (!unlock(2)) return;
+            model.doorsOpen = true;
+            btnDoors.setEnabled(false);
+            btnDoors.setText("✔   PINTU TERBUKA");
+            status("●  PINTU DIBUKA OTOMATIS", Tema.CYAN);
+            model.stage = 3;
+            refreshButtons();
+        });
+
+        btnEject.addActionListener(e -> {
+            if (!unlock(3)) return;
+            model.ejectThief();
+            btnEject.setEnabled(false);
+            btnEject.setText("✔   PENCURI KELUAR");
+            status("●  PENCURI DIKELUARKAN DARI KABIN", Tema.AMBER);
+            model.stage = 4;
+            refreshButtons();
+        });
+
         btnDrive.addActionListener(e -> {
-if (!unlock(2)) return;
-btnDrive.setEnabled(false);
-btnDrive.setText("KONTROL AKTIF");
-status("KENDALI AKTIF", Tema.GREEN);
-arrowPanel.setVisible(true);
-model.stage = 3;
-refreshButtons();
-});
+            if (!unlock(4)) return;
+            btnDrive.setEnabled(false);
+            btnDrive.setText("✔   KONTROL PENUH AKTIF");
+            status("●  KENDALI PENUH — arahkan mobil pulang", Tema.GREEN);
+            arrowPanel.setVisible(true);
+            model.stage = 5;
+            refreshButtons();
+        });
 
         return side;
     }
@@ -1808,18 +1832,20 @@ refreshButtons();
     }
 
     private void completeHack() {
-model.hacking = false;
-btnHack.setText("DIAMBIL ALIH");
-status("KENDALI DIAMBIL ALIH", Tema.GREEN);
-model.stage = 2;
-hackBar.setVisible(false);
-refreshButtons();
-}
+        model.hacking = false;
+        btnHack.setText("✔   KENDALI DIAMBIL ALIH");
+        status("●  KENDALI BERHASIL DIAMBIL ALIH", Tema.GREEN);
+        model.stage = 2;
+        hackBar.setVisible(false);
+        refreshButtons();
+    }
 
     private void refreshButtons() {
-if (model.stage == 1) btnHack.setEnabled(true);
-if (model.stage == 2) btnDrive.setEnabled(true);
-}
+        if (model.stage == 1) btnHack.setEnabled(true);
+        if (model.stage == 2) btnDoors.setEnabled(true);
+        if (model.stage == 3) btnEject.setEnabled(true);
+        if (model.stage == 4) btnDrive.setEnabled(true);
+    }
 
     private JPanel buildArrowBar() {
         arrowPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 8));
@@ -1892,12 +1918,11 @@ if (model.stage == 2) btnDrive.setEnabled(true);
         model.hackProgress = 0;
         model.thiefWp = 0;
 
-        btnTrack.setEnabled(true);
-btnTrack.setText("1. LACAK LOKASI");
-btnHack.setEnabled(false);
-btnHack.setText("2. AMBIL ALIH");
-btnDrive.setEnabled(false);
-btnDrive.setText("3. KONTROL");
+        btnTrack.setEnabled(true);  btnTrack.setText("1.    LACAK LOKASI");
+        btnHack.setEnabled(false);  btnHack.setText("2.     AMBIL ALIH KENDARAAN");
+        btnDoors.setEnabled(false); btnDoors.setText("3.    BUKA PINTU OTOMATIS");
+        btnEject.setEnabled(false); btnEject.setText("4.    KELUARKAN PENCURI");
+        btnDrive.setEnabled(false); btnDrive.setText("5.    KONTROL MOBIL");
 
         hackBar.setVisible(false);
         hackBar.setValue(0);
@@ -1919,22 +1944,24 @@ btnDrive.setText("3. KONTROL");
     }
 
     private boolean checkWin() {
-if (model.stage < 3) return false;
-double dx = model.carX - model.houseX;
-double dy = model.carY - model.houseY;
-return Math.hypot(dx, dy) < 80 && Math.abs(model.carSpeed) < 1.2;
-}
+        if (model.stage < 5) return false;
+        double dx = model.carX - model.houseX;
+        double dy = model.carY - model.houseY;
+        return Math.hypot(dx, dy) < 80 && Math.abs(model.carSpeed) < 1.2;
+    }
 
     private void updateInfo() {
-info1.setText(String.format("POSISI X=%d Y=%d", (int)model.carX, (int)model.carY));
-String mode;
-if (model.stage == 0) mode = "TRACKING";
-else if (model.stage == 1) mode = "HACKING";
-else if (model.stage == 2) mode = "CONTROLLED";
-else mode = "FREE DRIVE";
-info2.setText("MODE " + mode);
-if (mapArea != null) mapArea.repaint();
-}
+        info1.setText(String.format("POSISI  : X=%d  Y=%d", (int)model.carX, (int)model.carY));
+        String mode;
+        if (model.stage == 0) mode = "TRACKING";
+        else if (model.stage == 1) mode = "HACKING...";
+        else if (model.stage == 2) mode = "CONTROLLED";
+        else if (model.stage == 3) mode = "DOORS OPEN";
+        else if (model.stage == 4) mode = "EJECTING";
+        else mode = "FREE DRIVE";
+        info2.setText("MODE    : " + mode);
+        if (mapArea != null) mapArea.repaint();
+    }
 
     private void status(String msg, Color c) {
         statusPill.setText(msg);
