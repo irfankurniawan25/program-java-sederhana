@@ -13,44 +13,44 @@ import java.util.ArrayList;
 // TEMA WARNA & FONT (UPGRADED PALETTE)
 // ============================================================
 class Tema {
-    static final Color BG       = new Color(0x07090E);
-    static final Color BG2      = new Color(0x0B0F16);
-    static final Color PANEL    = new Color(0x101620);
-    static final Color PANEL2   = new Color(0x16202E);
-    static final Color GLASS    = new Color(20, 30, 45, 190);
-    static final Color BORDER   = new Color(0x2A3444);
+    static final Color BG = new Color(0x07090E);
+    static final Color BG2 = new Color(0x0B0F16);
+    static final Color PANEL = new Color(0x101620);
+    static final Color PANEL2 = new Color(0x16202E);
+    static final Color GLASS = new Color(20, 30, 45, 190);
+    static final Color BORDER = new Color(0x2A3444);
     static final Color BORDER_L = new Color(0x3A4658);
-    static final Color TEXT     = new Color(0xEAF0FA);
+    static final Color TEXT = new Color(0xEAF0FA);
     static final Color TEXT_DIM = new Color(0xB0BACE);
-    static final Color MUTED    = new Color(0x7E8AA3);
-    static final Color RED      = new Color(0xE5484D);
-    static final Color RED_L    = new Color(0xFF6B70);
-    static final Color GREEN    = new Color(0x30D158);
-    static final Color GREEN_L  = new Color(0x5CFF8A);
-    static final Color CYAN     = new Color(0x22D3EE);
-    static final Color CYAN_L   = new Color(0x67F0FF);
-    static final Color AMBER    = new Color(0xFFB020);
-    static final Color AMBER_L  = new Color(0xFFD166);
-    static final Color PURPLE   = new Color(0xA78BFA);
+    static final Color MUTED = new Color(0x7E8AA3);
+    static final Color RED = new Color(0xE5484D);
+    static final Color RED_L = new Color(0xFF6B70);
+    static final Color GREEN = new Color(0x30D158);
+    static final Color GREEN_L = new Color(0x5CFF8A);
+    static final Color CYAN = new Color(0x22D3EE);
+    static final Color CYAN_L = new Color(0x67F0FF);
+    static final Color AMBER = new Color(0xFFB020);
+    static final Color AMBER_L = new Color(0xFFD166);
+    static final Color PURPLE = new Color(0xA78BFA);
     static final Color PURPLE_L = new Color(0xC9B8FF);
-    static final Color GOLD     = new Color(0xF5C542);
-    static final Color TRACK    = new Color(0x1E2734);
-    static final Color ROAD     = new Color(0x252B38);
-    static final Color ROAD_D   = new Color(0x1B212C);
-    static final Color ROAD_LN  = new Color(0xB8BEC9);
-    static final Color GRASS    = new Color(0x17271B);
-    static final Color GRASS_L  = new Color(0x1F3524);
-    static final Color BUILD    = new Color(0x2A3444);
-    static final Color BUILD_L  = new Color(0x35415A);
+    static final Color GOLD = new Color(0xF5C542);
+    static final Color TRACK = new Color(0x1E2734);
+    static final Color ROAD = new Color(0x252B38);
+    static final Color ROAD_D = new Color(0x1B212C);
+    static final Color ROAD_LN = new Color(0xB8BEC9);
+    static final Color GRASS = new Color(0x17271B);
+    static final Color GRASS_L = new Color(0x1F3524);
+    static final Color BUILD = new Color(0x2A3444);
+    static final Color BUILD_L = new Color(0x35415A);
 
-    static final Font F_LOGO  = new Font("Segoe UI", Font.BOLD, 44);
+    static final Font F_LOGO = new Font("Segoe UI", Font.BOLD, 44);
     static final Font F_TITLE = new Font("Segoe UI", Font.BOLD, 34);
-    static final Font F_H     = new Font("Segoe UI", Font.BOLD, 22);
-    static final Font F_H2    = new Font("Segoe UI", Font.BOLD, 16);
-    static final Font F_SUB   = new Font("Segoe UI", Font.PLAIN, 13);
-    static final Font F_BOLD  = new Font("Segoe UI", Font.BOLD, 12);
+    static final Font F_H = new Font("Segoe UI", Font.BOLD, 22);
+    static final Font F_H2 = new Font("Segoe UI", Font.BOLD, 16);
+    static final Font F_SUB = new Font("Segoe UI", Font.PLAIN, 13);
+    static final Font F_BOLD = new Font("Segoe UI", Font.BOLD, 12);
     static final Font F_LABEL = new Font("Segoe UI", Font.PLAIN, 12);
-    static final Font F_MONO  = new Font("Consolas", Font.PLAIN, 12);
+    static final Font F_MONO = new Font("Consolas", Font.PLAIN, 12);
     static final Font F_MONOB = new Font("Consolas", Font.BOLD, 12);
 }
 
@@ -69,8 +69,8 @@ class Fx {
         RadialGradientPaint r = new RadialGradientPaint(
                 new Point2D.Float(w / 2f, h / 2f),
                 Math.max(w, h) * 0.72f,
-                new float[]{0.45f, 1f},
-                new Color[]{new Color(0, 0, 0, 0), new Color(0, 0, 0, (int)(strength * 255))});
+                new float[] { 0.45f, 1f },
+                new Color[] { new Color(0, 0, 0, 0), new Color(0, 0, 0, (int) (strength * 255)) });
         g2.setPaint(r);
         g2.fillRect(0, 0, w, h);
     }
@@ -78,19 +78,19 @@ class Fx {
     static void glow(Graphics2D g2, int cx, int cy, int radius, Color c, int layers) {
         for (int i = layers; i > 0; i--) {
             float f = (float) i / layers;
-            int rr = (int)(radius * f);
-            int a = (int)(70 * (1 - f));
+            int rr = (int) (radius * f);
+            int a = (int) (70 * (1 - f));
             g2.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), a));
             g2.fillOval(cx - rr, cy - rr, rr * 2, rr * 2);
         }
     }
 
     static void glowRect(Graphics2D g2, int x, int y, int w, int h, int radius,
-                         Color c, int layers) {
+            Color c, int layers) {
         for (int i = layers; i > 0; i--) {
             float f = (float) i / layers;
-            int pad = (int)(radius * f * 0.6);
-            int a = (int)(45 * (1 - f));
+            int pad = (int) (radius * f * 0.6);
+            int a = (int) (45 * (1 - f));
             g2.setColor(new Color(c.getRed(), c.getGreen(), c.getBlue(), a));
             g2.fillRoundRect(x - pad, y - pad, w + pad * 2, h + pad * 2,
                     radius + pad, radius + pad);
@@ -105,7 +105,8 @@ class Fx {
 
     static void scanlines(Graphics2D g2, int w, int h, int alpha) {
         g2.setColor(new Color(0, 0, 0, alpha));
-        for (int y = 0; y < h; y += 3) g2.fillRect(0, y, w, 1);
+        for (int y = 0; y < h; y += 3)
+            g2.fillRect(0, y, w, 1);
     }
 
     static void grain(Graphics2D g2, int w, int h, int alpha) {
@@ -124,9 +125,11 @@ class RoundedPanel extends JPanel {
     private final Color fill;
     private final int radius;
     private final boolean glass;
+
     public RoundedPanel(LayoutManager lm, Color fill, int radius) {
         this(lm, fill, radius, false);
     }
+
     public RoundedPanel(LayoutManager lm, Color fill, int radius, boolean glass) {
         super(lm);
         this.fill = fill;
@@ -134,7 +137,9 @@ class RoundedPanel extends JPanel {
         this.glass = glass;
         setOpaque(false);
     }
-    @Override protected void paintComponent(Graphics g) {
+
+    @Override
+    protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         Fx.antialias(g2);
         g2.setColor(new Color(0, 0, 0, 90));
@@ -162,6 +167,7 @@ class ModernButton extends JButton {
     private final Color base;
     private boolean pulse = false;
     private float pulsePhase = 0;
+
     public ModernButton(String text, Color base) {
         super(text);
         this.base = base;
@@ -174,16 +180,31 @@ class ModernButton extends JButton {
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setBorder(new EmptyBorder(11, 18, 11, 18));
     }
-    public void setPulse(boolean b) { pulse = b; }
-    public void tickPulse(float dt) { if (pulse) { pulsePhase += dt * 3; repaint(); } }
-    @Override protected void paintComponent(Graphics g) {
+
+    public void setPulse(boolean b) {
+        pulse = b;
+    }
+
+    public void tickPulse(float dt) {
+        if (pulse) {
+            pulsePhase += dt * 3;
+            repaint();
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         Fx.antialias(g2);
         Color c;
-        if (!isEnabled()) c = new Color(0x232B38);
-        else if (getModel().isPressed()) c = base.darker().darker();
-        else if (getModel().isRollover()) c = base.brighter();
-        else c = base;
+        if (!isEnabled())
+            c = new Color(0x232B38);
+        else if (getModel().isPressed())
+            c = base.darker().darker();
+        else if (getModel().isRollover())
+            c = base.brighter();
+        else
+            c = base;
 
         if (isEnabled() && (getModel().isRollover() || pulse)) {
             Fx.glowRect(g2, 0, 0, getWidth(), getHeight(), 12, base, 4);
@@ -210,6 +231,7 @@ class ModernButton extends JButton {
 class Pill extends JLabel {
     private Color accent;
     private float phase = 0;
+
     public Pill(String text, Color accent) {
         super(text);
         this.accent = accent;
@@ -218,9 +240,18 @@ class Pill extends JLabel {
         setBorder(new EmptyBorder(8, 18, 8, 18));
         setOpaque(false);
     }
-    public void setAccent(Color c) { this.accent = c; }
-    public void tick(float dt) { phase += dt * 2.5f; repaint(); }
-    @Override protected void paintComponent(Graphics g) {
+
+    public void setAccent(Color c) {
+        this.accent = c;
+    }
+
+    public void tick(float dt) {
+        phase += dt * 2.5f;
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         Fx.antialias(g2);
         Fx.glowRect(g2, 0, 0, getWidth(), getHeight(), getHeight(), accent, 4);
@@ -234,8 +265,8 @@ class Pill extends JLabel {
         g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, getHeight(), getHeight());
         int dotX = 16;
         int dotY = getHeight() / 2;
-        float a = (float)(0.55 + 0.45 * Math.sin(phase));
-        g2.setColor(new Color(accent.getRed(), accent.getGreen(), accent.getBlue(), (int)(a * 255)));
+        float a = (float) (0.55 + 0.45 * Math.sin(phase));
+        g2.setColor(new Color(accent.getRed(), accent.getGreen(), accent.getBlue(), (int) (a * 255)));
         g2.fillOval(dotX - 4, dotY - 4, 8, 8);
         Fx.glow(g2, dotX, dotY, 12, accent, 3);
         g2.dispose();
@@ -246,7 +277,9 @@ class Pill extends JLabel {
 // ============================================================
 // MODEL / STATE
 // ============================================================
-enum Scene { HOME, THEFT, REALIZE, REMOTE, LAPTOP, WIN }
+enum Scene {
+    HOME, THEFT, REALIZE, REMOTE, LAPTOP, WIN
+}
 
 class Model {
     static final int WORLD_W = 1200;
@@ -277,23 +310,28 @@ class Model {
     List<Point2D.Double> trail = new ArrayList<>();
     int trailTick = 0;
 
-    public Model() { buildThiefPath(); }
+    public Model() {
+        buildThiefPath();
+    }
 
     void buildThiefPath() {
-    thiefPath.clear();
-    thiefPath.add(new double[]{200, 160});
-    thiefPath.add(new double[]{200, 310});
-    thiefPath.add(new double[]{530, 310});
-    thiefPath.add(new double[]{530, 550});
-    thiefPath.add(new double[]{930, 550});
-    thiefPath.add(new double[]{930, 310});
-    thiefPath.add(new double[]{680, 310});
-}
+        thiefPath.clear();
+        thiefPath.add(new double[] { 200, 160 });
+        thiefPath.add(new double[] { 200, 310 });
+        thiefPath.add(new double[] { 530, 310 });
+        thiefPath.add(new double[] { 530, 550 });
+        thiefPath.add(new double[] { 930, 550 });
+        thiefPath.add(new double[] { 930, 310 });
+        thiefPath.add(new double[] { 900, 310 });
+        thiefPath.add(new double[] { 850, 310 });
+    }
 
     public void update(double dt) {
-        if (scene != Scene.LAPTOP) return;
+        if (scene != Scene.LAPTOP)
+            return;
 
-        if (thiefInside && stage == 0) aiDrive();
+        if (thiefInside && stage == 0)
+            aiDrive();
 
         // ✅ FIX: kontrol pemain aktif saat stage == 5 (setelah klik KONTROL MOBIL)
         if (!thiefInside && stage == 5) {
@@ -301,66 +339,75 @@ class Model {
             carSpeed += accel;
             carSpeed *= (throttle == 0) ? 0.965 : 0.995;
             carSpeed = Math.max(-2.5, Math.min(5.0, carSpeed));
-            if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
+            if (Math.abs(carSpeed) < 0.05)
+                carSpeed = 0;
             if (steer != 0) {
                 double f = Math.max(0.35, Math.min(1.0, Math.abs(carSpeed) / 5.0 + 0.2));
                 carAngle += steer * 3.0 * f * (carSpeed < -0.05 ? -1 : 1);
             }
         } else if (!thiefInside) {
             carSpeed *= 0.95;
-            if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
+            if (Math.abs(carSpeed) < 0.05)
+                carSpeed = 0;
         } else if (stage > 0) {
             carSpeed *= 0.97;
-            if (Math.abs(carSpeed) < 0.05) carSpeed = 0;
+            if (Math.abs(carSpeed) < 0.05)
+                carSpeed = 0;
         }
 
         double rad = Math.toRadians(carAngle);
-double nextX = carX + carSpeed * Math.cos(rad);
-double nextY = carY + carSpeed * Math.sin(rad);
-boolean nabrak = false;
+        double nextX = carX + carSpeed * Math.cos(rad);
+        double nextY = carY + carSpeed * Math.sin(rad);
+        boolean nabrak = false;
 
-double m = 25;
-if (nextX < m || nextX > 1175 || nextY < m || nextY > 695) nabrak = true;
-
-if (nextX > 100 && nextX < 180 && nextY > 90 && nextY < 170) nabrak = true;
-
-if (nextX > 30 && nextX < 270 && nextY > 530 && nextY < 720) nabrak = true;
-
-java.util.Random r = new java.util.Random(42);
-int[] koordinatX = {60, 260, 600, 750, 1000};
-int[] koordinatY = {60, 370, 610};
-for (int bx : koordinatX) {
-    for (int by : koordinatY) {
-        if (bx < 300 && by < 300) continue;
-        if (bx < 300 && by > 500) continue;
-        int bw = 100 + r.nextInt(30);
-        int bh = 100 + r.nextInt(30);
-        if (nextX > bx && nextX < bx + bw && nextY > by && nextY < by + bh) {
+        double m = 25;
+        if (nextX < m || nextX > 1175 || nextY < m || nextY > 695)
             nabrak = true;
-        }
-    }
-}
 
-if (nabrak) {
-    carSpeed = carSpeed * -0.4;
-} else {
-    carX = nextX;
-    carY = nextY;
-}
+        if (nextX > 100 && nextX < 180 && nextY > 90 && nextY < 170)
+            nabrak = true;
+
+        if (nextX > 30 && nextX < 270 && nextY > 530 && nextY < 720)
+            nabrak = true;
+
+        java.util.Random r = new java.util.Random(42);
+        int[] koordinatX = { 60, 260, 600, 750, 1000 };
+        int[] koordinatY = { 60, 370, 610 };
+        for (int bx : koordinatX) {
+            for (int by : koordinatY) {
+                if (bx < 300 && by < 300)
+                    continue;
+                if (bx < 300 && by > 500)
+                    continue;
+                int bw = 100 + r.nextInt(30);
+                int bh = 100 + r.nextInt(30);
+                if (nextX > bx && nextX < bx + bw && nextY > by && nextY < by + bh) {
+                    nabrak = true;
+                }
+            }
+        }
+
+        if (nabrak) {
+            carSpeed = carSpeed * -0.4;
+        } else {
+            carX = nextX;
+            carY = nextY;
+        }
 
         carAngle = ((carAngle % 360) + 360) % 360;
 
         trailTick++;
         if (trailTick % 3 == 0 && Math.abs(carSpeed) > 0.2) {
             trail.add(new Point2D.Double(carX, carY));
-            if (trail.size() > 300) trail.remove(0);
+            if (trail.size() > 300)
+                trail.remove(0);
         }
 
         if (thiefEscaping) {
             thiefX += thiefVX * dt;
             thiefY += thiefVY * dt;
             if (thiefX < -120 || thiefX > WORLD_W + 120 ||
-                thiefY < -120 || thiefY > WORLD_H + 120) {
+                    thiefY < -120 || thiefY > WORLD_H + 120) {
                 thiefEscaping = false;
                 thiefVisible = false;
             }
@@ -368,25 +415,35 @@ if (nabrak) {
     }
 
     private void aiDrive() {
-        if (thiefWp >= thiefPath.size()) return;
+        if (thiefWp >= thiefPath.size())
+            return;
         double[] t = thiefPath.get(thiefWp);
         double dx = t[0] - carX, dy = t[1] - carY;
         double d = Math.hypot(dx, dy);
-        if (d < 15) { thiefWp = (thiefWp + 1) % thiefPath.size(); return; }
+        if (d < 15) {
+            if (thiefWp < thiefPath.size() - 1)
+                thiefWp++;
+            return;
+        }
         double tAng = Math.toDegrees(Math.atan2(dy, dx));
-        if (tAng < 0) tAng += 360;
+        if (tAng < 0)
+            tAng += 360;
         double diff = tAng - carAngle;
-        while (diff > 180)  diff -= 360;
-        while (diff < -180) diff += 360;
+        while (diff > 180)
+            diff -= 360;
+        while (diff < -180)
+            diff += 360;
         carAngle += Math.signum(diff) * Math.min(Math.abs(diff), 4);
         carSpeed = Math.min(carSpeed + 0.12, 2.6);
     }
 
     public void ejectThief() {
-        if (!thiefInside) return;
+        if (!thiefInside)
+            return;
         thiefInside = false;
         thiefVisible = true;
-        thiefX = carX + 40; thiefY = carY + 20;
+        thiefX = carX + 40;
+        thiefY = carY + 20;
         thiefEscaping = true;
         double a = Math.random() * Math.PI * 2;
         thiefVX = Math.cos(a) * 200;
@@ -396,18 +453,26 @@ if (nabrak) {
     public void reset() {
         scene = Scene.HOME;
         stage = 0;
-        carX = 200; carY = 160; carAngle = 0; carSpeed = 0;
-        throttle = 0; steer = 0;
+        carX = 200;
+        carY = 160;
+        carAngle = 0;
+        carSpeed = 0;
+        throttle = 0;
+        steer = 0;
         doorsOpen = false;
         thiefInside = true;
         thiefVisible = false;
         thiefEscaping = false;
-        hackProgress = 0; hacking = false; thiefWp = 0;
+        hackProgress = 0;
+        hacking = false;
+        thiefWp = 0;
         trail.clear();
     }
 }
 
-interface SceneLifecycle { void onEnter(); }
+interface SceneLifecycle {
+    void onEnter();
+}
 
 // ============================================================
 // DRAWING TOOLKIT
@@ -421,7 +486,8 @@ class Draw {
     }
 
     static void text(Graphics2D g2, String s, int cx, int y, Font f, Color c) {
-        g2.setFont(f); g2.setColor(c);
+        g2.setFont(f);
+        g2.setColor(c);
         FontMetrics fm = g2.getFontMetrics();
         g2.drawString(s, cx - fm.stringWidth(s) / 2, y);
     }
@@ -443,83 +509,83 @@ class Draw {
 
     static void house(Graphics2D g2, double x, double y, double s) {
         g2.setColor(new Color(0x1B3322));
-        g2.fillRoundRect((int)(x-s-22), (int)(y-s-22), (int)(s*2+44), (int)(s*2+44), 26, 26);
+        g2.fillRoundRect((int) (x - s - 22), (int) (y - s - 22), (int) (s * 2 + 44), (int) (s * 2 + 44), 26, 26);
         g2.setColor(new Color(0x2A4A32));
         g2.setStroke(new BasicStroke(1.5f));
-        g2.drawRoundRect((int)(x-s-22), (int)(y-s-22), (int)(s*2+44), (int)(s*2+44), 26, 26);
+        g2.drawRoundRect((int) (x - s - 22), (int) (y - s - 22), (int) (s * 2 + 44), (int) (s * 2 + 44), 26, 26);
         tree(g2, x - s - 40, y + s - 6, 12);
         tree(g2, x + s + 40, y - s + 6, 12);
 
         g2.setColor(new Color(0, 0, 0, 120));
-        g2.fillRoundRect((int)(x-s+2), (int)(y-s+6), (int)(s*2), (int)(s*2), 14, 14);
+        g2.fillRoundRect((int) (x - s + 2), (int) (y - s + 6), (int) (s * 2), (int) (s * 2), 14, 14);
 
-        g2.setPaint(new GradientPaint((float)x, (float)(y-s), new Color(0xE8C79A),
-                (float)x, (float)(y+s), new Color(0x8B6F47)));
-        g2.fillRoundRect((int)(x-s), (int)(y-s), (int)(s*2), (int)(s*2), 14, 14);
+        g2.setPaint(new GradientPaint((float) x, (float) (y - s), new Color(0xE8C79A),
+                (float) x, (float) (y + s), new Color(0x8B6F47)));
+        g2.fillRoundRect((int) (x - s), (int) (y - s), (int) (s * 2), (int) (s * 2), 14, 14);
 
         g2.setColor(new Color(0, 0, 0, 25));
-        for (int i = 0; i < s*2; i += 8) {
-            g2.drawLine((int)(x-s), (int)(y-s) + i, (int)(x+s), (int)(y-s) + i);
+        for (int i = 0; i < s * 2; i += 8) {
+            g2.drawLine((int) (x - s), (int) (y - s) + i, (int) (x + s), (int) (y - s) + i);
         }
 
         g2.setColor(new Color(0, 0, 0, 100));
         g2.setStroke(new BasicStroke(2));
-        g2.drawRoundRect((int)(x-s), (int)(y-s), (int)(s*2), (int)(s*2), 14, 14);
+        g2.drawRoundRect((int) (x - s), (int) (y - s), (int) (s * 2), (int) (s * 2), 14, 14);
 
-        int[] rx = {(int)(x-s-8), (int)(x+s+8), (int)(x+s+2), (int)(x-s-2)};
-        int[] ry = {(int)(y-s-4), (int)(y-s-4), (int)(y-s+10), (int)(y-s+10)};
+        int[] rx = { (int) (x - s - 8), (int) (x + s + 8), (int) (x + s + 2), (int) (x - s - 2) };
+        int[] ry = { (int) (y - s - 4), (int) (y - s - 4), (int) (y - s + 10), (int) (y - s + 10) };
         g2.setColor(new Color(0x5A1E1E));
         g2.fillPolygon(rx, ry, 4);
-        int[] rx2 = {(int)(x-s-8), (int)(x+s+8), (int)(x+s+4), (int)(x-s-4)};
-        int[] ry2 = {(int)(y-s-4), (int)(y-s-4), (int)(y-s+2), (int)(y-s+2)};
+        int[] rx2 = { (int) (x - s - 8), (int) (x + s + 8), (int) (x + s + 4), (int) (x - s - 4) };
+        int[] ry2 = { (int) (y - s - 4), (int) (y - s - 4), (int) (y - s + 2), (int) (y - s + 2) };
         g2.setColor(new Color(0x8B2B2B));
         g2.fillPolygon(rx2, ry2, 4);
         g2.setColor(new Color(0xC13B3B));
         g2.setStroke(new BasicStroke(1.5f));
-        g2.drawLine((int)(x-s-8), (int)(y-s-4), (int)(x+s+8), (int)(y-s-4));
+        g2.drawLine((int) (x - s - 8), (int) (y - s - 4), (int) (x + s + 8), (int) (y - s - 4));
 
         g2.setColor(new Color(0x4A1818));
-        g2.fillRect((int)(x+s-20), (int)(y-s-14), 12, 14);
+        g2.fillRect((int) (x + s - 20), (int) (y - s - 14), 12, 14);
 
         g2.setColor(new Color(0x3B2412));
-        g2.fillRoundRect((int)(x-10), (int)(y+s-14), 20, 14, 4, 4);
+        g2.fillRoundRect((int) (x - 10), (int) (y + s - 14), 20, 14, 4, 4);
         g2.setColor(new Color(0x5C3B1E));
-        g2.fillRoundRect((int)(x-8), (int)(y+s-12), 16, 12, 3, 3);
+        g2.fillRoundRect((int) (x - 8), (int) (y + s - 12), 16, 12, 3, 3);
         g2.setColor(Tema.GOLD);
-        g2.fillOval((int)(x+3), (int)(y+s-6), 3, 3);
+        g2.fillOval((int) (x + 3), (int) (y + s - 6), 3, 3);
 
-        drawWindow(g2, (int)(x-s+8), (int)(y-6), 12, 12);
-        drawWindow(g2, (int)(x+s-20), (int)(y-6), 12, 12);
-        drawWindow(g2, (int)(x-s+8), (int)(y+s-32), 12, 12);
+        drawWindow(g2, (int) (x - s + 8), (int) (y - 6), 12, 12);
+        drawWindow(g2, (int) (x + s - 20), (int) (y - 6), 12, 12);
+        drawWindow(g2, (int) (x - s + 8), (int) (y + s - 32), 12, 12);
 
-        textGlow(g2, "RUMAH", (int)x, (int)(y-s-30), Tema.F_H2, Tema.TEXT, Tema.GREEN);
+        textGlow(g2, "RUMAH", (int) x, (int) (y - s - 30), Tema.F_H2, Tema.TEXT, Tema.GREEN);
     }
 
     static void drawWindow(Graphics2D g2, int x, int y, int w, int h) {
-        Fx.glow(g2, x + w/2, y + h/2, w * 2, Tema.AMBER_L, 3);
+        Fx.glow(g2, x + w / 2, y + h / 2, w * 2, Tema.AMBER_L, 3);
         g2.setColor(new Color(0x2A1A0A));
         g2.fillRoundRect(x - 2, y - 2, w + 4, h + 4, 4, 4);
         g2.setColor(new Color(0xFFE9A8));
         g2.fillRect(x, y, w, h);
         g2.setColor(new Color(0x2A1A0A));
         g2.setStroke(new BasicStroke(1.5f));
-        g2.drawLine(x + w/2, y, x + w/2, y + h);
-        g2.drawLine(x, y + h/2, x + w, y + h/2);
+        g2.drawLine(x + w / 2, y, x + w / 2, y + h);
+        g2.drawLine(x, y + h / 2, x + w, y + h / 2);
     }
 
     static void tree(Graphics2D g2, double x, double y, double r) {
         g2.setColor(new Color(0, 0, 0, 100));
-        g2.fillOval((int)(x-r), (int)(y+r*0.6), (int)(r*2), (int)(r*0.6));
+        g2.fillOval((int) (x - r), (int) (y + r * 0.6), (int) (r * 2), (int) (r * 0.6));
         g2.setColor(new Color(0x1F3A24));
-        g2.fillOval((int)(x-r), (int)(y-r), (int)(r*2), (int)(r*2));
+        g2.fillOval((int) (x - r), (int) (y - r), (int) (r * 2), (int) (r * 2));
         g2.setColor(new Color(0x2E5734));
-        g2.fillOval((int)(x-r*0.7), (int)(y-r*0.9), (int)(r*1.2), (int)(r*1.2));
+        g2.fillOval((int) (x - r * 0.7), (int) (y - r * 0.9), (int) (r * 1.2), (int) (r * 1.2));
         g2.setColor(new Color(0x3E6B42));
-        g2.fillOval((int)(x-r*0.4), (int)(y-r*0.7), (int)(r*0.7), (int)(r*0.7));
+        g2.fillOval((int) (x - r * 0.4), (int) (y - r * 0.7), (int) (r * 0.7), (int) (r * 0.7));
     }
 
     static void car(Graphics2D g2, double cx, double cy, double angle,
-                    Color body, boolean doorsOpen, boolean thiefInside, boolean headlight) {
+            Color body, boolean doorsOpen, boolean thiefInside, boolean headlight) {
         Graphics2D gc = (Graphics2D) g2.create();
         antialias(gc);
         gc.translate(cx, cy);
@@ -527,7 +593,7 @@ class Draw {
 
         for (int i = 3; i >= 1; i--) {
             gc.setColor(new Color(0, 0, 0, 40 / i));
-            gc.fillRoundRect(-26 - i, -10 - i, 52 + i*2, 26 + i*2, 14, 14);
+            gc.fillRoundRect(-26 - i, -10 - i, 52 + i * 2, 26 + i * 2, 14, 14);
         }
         gc.setColor(new Color(0, 0, 0, 120));
         gc.fillRoundRect(-24, -8, 50, 22, 12, 12);
@@ -557,8 +623,8 @@ class Draw {
         gc.setPaint(new LinearGradientPaint(
                 new Point2D.Float(0, -14),
                 new Point2D.Float(0, 14),
-                new float[]{0f, 0.5f, 1f},
-                new Color[]{body.brighter().brighter(), body, body.darker().darker()}));
+                new float[] { 0f, 0.5f, 1f },
+                new Color[] { body.brighter().brighter(), body, body.darker().darker() }));
         gc.fillRoundRect(-24, -14, 48, 28, 13, 13);
 
         gc.setColor(new Color(255, 255, 255, 70));
@@ -578,7 +644,7 @@ class Draw {
                 11, 8, new Color(0x6EA8D0)));
         gc.fillRoundRect(10, -8, 11, 16, 5, 5);
         gc.setColor(new Color(255, 255, 255, 120));
-        gc.fillPolygon(new int[]{12, 16, 14, 12}, new int[]{-6, -6, -2, -2}, 4);
+        gc.fillPolygon(new int[] { 12, 16, 14, 12 }, new int[] { -6, -6, -2, -2 }, 4);
         gc.setPaint(new GradientPaint(-16, -7, new Color(0xBFE0F5),
                 -16, 7, new Color(0x6A9FC0)));
         gc.fillRoundRect(-20, -7, 8, 14, 4, 4);
@@ -592,17 +658,17 @@ class Draw {
             gc.setColor(new Color(255, 255, 255, 230));
             gc.setStroke(new BasicStroke(3.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             gc.drawLine(-4, -14, -4, -25);
-            gc.drawLine(-4,  14, -4,  25);
+            gc.drawLine(-4, 14, -4, 25);
             gc.setColor(new Color(255, 255, 255, 120));
             gc.setStroke(new BasicStroke(1.5f));
             gc.drawOval(-7, -27, 6, 4);
-            gc.drawOval(-7,  23, 6, 4);
+            gc.drawOval(-7, 23, 6, 4);
         }
 
         wheel(gc, -16, -17);
-        wheel(gc, 8,  -17);
+        wheel(gc, 8, -17);
         wheel(gc, -16, 12);
-        wheel(gc, 8,  12);
+        wheel(gc, 8, 12);
 
         gc.setColor(new Color(0xFFF4C2));
         gc.fillRoundRect(20, -9, 4, 5, 2, 2);
@@ -642,20 +708,20 @@ class Draw {
 
     static void thiefTop(Graphics2D g2, double x, double y) {
         g2.setColor(new Color(0, 0, 0, 130));
-        g2.fillOval((int)x - 11, (int)y + 7, 22, 7);
-        Fx.glow(g2, (int)x, (int)y, 26, Tema.RED, 4);
+        g2.fillOval((int) x - 11, (int) y + 7, 22, 7);
+        Fx.glow(g2, (int) x, (int) y, 26, Tema.RED, 4);
         g2.setPaint(new RadialGradientPaint(new Point2D.Double(x, y),
-                14, new float[]{0f, 1f},
-                new Color[]{new Color(0x2A2F3A), new Color(0x10141A)}));
-        g2.fillOval((int)x - 11, (int)y - 11, 22, 22);
+                14, new float[] { 0f, 1f },
+                new Color[] { new Color(0x2A2F3A), new Color(0x10141A) }));
+        g2.fillOval((int) x - 11, (int) y - 11, 22, 22);
         g2.setColor(new Color(0x0A0D12));
         g2.setStroke(new BasicStroke(1.5f));
-        g2.drawOval((int)x - 11, (int)y - 11, 22, 22);
+        g2.drawOval((int) x - 11, (int) y - 11, 22, 22);
         g2.setColor(new Color(0x0A0D12));
-        g2.fillArc((int)x - 10, (int)y - 12, 20, 14, 0, 180);
+        g2.fillArc((int) x - 10, (int) y - 12, 20, 14, 0, 180);
         g2.setColor(Tema.RED_L);
-        g2.fillRect((int)x - 8, (int)y - 4, 16, 3);
-        Fx.glow(g2, (int)x, (int)y - 3, 10, Tema.RED, 2);
+        g2.fillRect((int) x - 8, (int) y - 4, 16, 3);
+        Fx.glow(g2, (int) x, (int) y - 3, 10, Tema.RED, 2);
     }
 
     static void thiefSide(Graphics2D g2, double x, double y, double scale, double phase) {
@@ -671,11 +737,11 @@ class Draw {
 
         gc.setColor(new Color(0x14181F));
         gc.setStroke(new BasicStroke(7, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        gc.drawLine(-4, 12, (int)(-8 + legSwing), 26);
-        gc.drawLine(4, 12, (int)(8 - legSwing), 26);
+        gc.drawLine(-4, 12, (int) (-8 + legSwing), 26);
+        gc.drawLine(4, 12, (int) (8 - legSwing), 26);
         gc.setColor(new Color(0x0A0D12));
-        gc.fillOval((int)(-12 + legSwing), 24, 10, 6);
-        gc.fillOval((int)(4 - legSwing), 24, 10, 6);
+        gc.fillOval((int) (-12 + legSwing), 24, 10, 6);
+        gc.fillOval((int) (4 - legSwing), 24, 10, 6);
 
         gc.setPaint(new GradientPaint(0, -8, new Color(0x353A47), 0, 16, new Color(0x181D26)));
         gc.fillRoundRect(-11, -8, 22, 26, 8, 8);
@@ -687,11 +753,11 @@ class Draw {
 
         gc.setColor(new Color(0x1A1F27));
         gc.setStroke(new BasicStroke(6, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        gc.drawLine(-9, -3, (int)(-15 - legSwing), 10);
-        gc.drawLine(9, -3, (int)(15 + legSwing), 10);
+        gc.drawLine(-9, -3, (int) (-15 - legSwing), 10);
+        gc.drawLine(9, -3, (int) (15 + legSwing), 10);
         gc.setColor(new Color(0x0A0D12));
-        gc.fillOval((int)(-20 - legSwing), 8, 7, 7);
-        gc.fillOval((int)(11 + legSwing), 8, 7, 7);
+        gc.fillOval((int) (-20 - legSwing), 8, 7, 7);
+        gc.fillOval((int) (11 + legSwing), 8, 7, 7);
 
         gc.setColor(new Color(0xF2C9A0));
         gc.fillOval(-9, -25, 18, 18);
@@ -731,64 +797,66 @@ class Draw {
         gc.fillOval(-11, 25, 11, 6);
         gc.fillOval(2, 25, 11, 6);
 
-        gc.setPaint(new GradientPaint(0, -8 + (int)bob, new Color(0x5F82C2),
-                0, 16 + (int)bob, new Color(0x2F4A80)));
-        gc.fillRoundRect(-12, -8 + (int)bob, 24, 26, 9, 9);
+        gc.setPaint(new GradientPaint(0, -8 + (int) bob, new Color(0x5F82C2),
+                0, 16 + (int) bob, new Color(0x2F4A80)));
+        gc.fillRoundRect(-12, -8 + (int) bob, 24, 26, 9, 9);
         gc.setColor(new Color(0x1A1F27));
-        gc.fillRect(-12, 12 + (int)bob, 24, 4);
+        gc.fillRect(-12, 12 + (int) bob, 24, 4);
         gc.setColor(Tema.GOLD);
-        gc.fillRect(-2, 13 + (int)bob, 4, 2);
+        gc.fillRect(-2, 13 + (int) bob, 4, 2);
 
         gc.setColor(new Color(0x3E5FA0));
         gc.setStroke(new BasicStroke(6, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-        gc.drawLine(-11, -3 + (int)bob, -17, 10 + (int)bob);
-        gc.drawLine(11, -3 + (int)bob, 17, 10 + (int)bob);
+        gc.drawLine(-11, -3 + (int) bob, -17, 10 + (int) bob);
+        gc.drawLine(11, -3 + (int) bob, 17, 10 + (int) bob);
         gc.setColor(new Color(0xF2C9A0));
-        gc.fillOval(-21, 8 + (int)bob, 7, 7);
-        gc.fillOval(14, 8 + (int)bob, 7, 7);
+        gc.fillOval(-21, 8 + (int) bob, 7, 7);
+        gc.fillOval(14, 8 + (int) bob, 7, 7);
 
         gc.setColor(new Color(0xF2C9A0));
-        gc.fillOval(-9, -25 + (int)bob, 18, 18);
+        gc.fillOval(-9, -25 + (int) bob, 18, 18);
         gc.setColor(new Color(0x3A2410));
-        gc.fillArc(-10, -30 + (int)bob, 20, 15, 0, 180);
+        gc.fillArc(-10, -30 + (int) bob, 20, 15, 0, 180);
         gc.setColor(new Color(0x0A0D12));
-        gc.fillRect(-5, -17 + (int)bob, 2, 2);
-        gc.fillRect(3, -17 + (int)bob, 2, 2);
+        gc.fillRect(-5, -17 + (int) bob, 2, 2);
+        gc.fillRect(3, -17 + (int) bob, 2, 2);
 
         gc.dispose();
     }
 
     static void cityMap(Graphics2D g2, int w, int h) {
-    g2.setPaint(new GradientPaint(0, 0, Tema.GRASS_L, w, h, Tema.GRASS));
-    g2.fillRect(0, 0, w, h);
+        g2.setPaint(new GradientPaint(0, 0, Tema.GRASS_L, w, h, Tema.GRASS));
+        g2.fillRect(0, 0, w, h);
 
-    java.util.Random r = new java.util.Random(42);
-    for (int i = 0; i < 200; i++) {
-        int x = r.nextInt(w), y = r.nextInt(h);
-        g2.setColor(new Color(0x1F3524));
-        g2.fillRect(x, y, 3, 2);
-    }
-
-    drawPark(g2, 40, h - 180, 220, 140, r);
-
-    int[] koordinatX = {60, 260, 600, 750, 1000};
-    int[] koordinatY = {60, 370, 610};
-
-    for (int bx : koordinatX) {
-        for (int by : koordinatY) {
-            if (bx < 300 && by < 300) continue;
-            if (bx < 300 && by > 500) continue;
-            int bw = 100 + r.nextInt(30);
-            int bh = 100 + r.nextInt(30);
-            drawBuilding(g2, bx, by, bw, bh, r);
+        java.util.Random r = new java.util.Random(42);
+        for (int i = 0; i < 200; i++) {
+            int x = r.nextInt(w), y = r.nextInt(h);
+            g2.setColor(new Color(0x1F3524));
+            g2.fillRect(x, y, 3, 2);
         }
-    }
 
-    drawRoadH(g2, 280, w);
-    drawRoadH(g2, 520, w);
-    drawRoadV(g2, 500, h);
-    drawRoadV(g2, 900, h);
-}
+        drawPark(g2, 40, h - 180, 220, 140, r);
+
+        int[] koordinatX = { 60, 260, 600, 750, 1000 };
+        int[] koordinatY = { 60, 370, 610 };
+
+        for (int bx : koordinatX) {
+            for (int by : koordinatY) {
+                if (bx < 300 && by < 300)
+                    continue;
+                if (bx < 300 && by > 500)
+                    continue;
+                int bw = 100 + r.nextInt(30);
+                int bh = 100 + r.nextInt(30);
+                drawBuilding(g2, bx, by, bw, bh, r);
+            }
+        }
+
+        drawRoadH(g2, 280, w);
+        drawRoadH(g2, 520, w);
+        drawRoadV(g2, 500, h);
+        drawRoadV(g2, 900, h);
+    }
 
     static void drawRoadH(Graphics2D g2, int y, int w) {
         g2.setColor(Tema.ROAD_D);
@@ -800,7 +868,7 @@ class Draw {
         g2.fillRect(0, y + 60, w, 4);
         g2.setColor(new Color(0xE5B948));
         g2.setStroke(new BasicStroke(2.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND,
-                1f, new float[]{20, 16}, 0));
+                1f, new float[] { 20, 16 }, 0));
         g2.drawLine(0, y + 30, w, y + 30);
         g2.setColor(new Color(0xD0D4DC));
         g2.setStroke(new BasicStroke(1.2f));
@@ -818,7 +886,7 @@ class Draw {
         g2.fillRect(x + 60, 0, 4, h);
         g2.setColor(new Color(0xE5B948));
         g2.setStroke(new BasicStroke(2.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND,
-                1f, new float[]{20, 16}, 0));
+                1f, new float[] { 20, 16 }, 0));
         g2.drawLine(x + 30, 0, x + 30, h);
         g2.setColor(new Color(0xD0D4DC));
         g2.setStroke(new BasicStroke(1.2f));
@@ -844,7 +912,8 @@ class Draw {
                 int wy = y + 16 + j * ((h - 26) / rows);
                 int ww = (w - 16) / cols - 4;
                 int wh = (h - 26) / rows - 4;
-                if (ww <= 0 || wh <= 0) continue;
+                if (ww <= 0 || wh <= 0)
+                    continue;
                 if (r.nextInt(3) == 0) {
                     g2.setColor(new Color(0xFFE9A8));
                 } else {
@@ -925,27 +994,44 @@ class HomePanel extends JPanel implements SceneLifecycle {
         add(titleWrap, BorderLayout.NORTH);
         add(btnWrap, BorderLayout.SOUTH);
 
-        anim = new javax.swing.Timer(30, e -> { glowPhase += 0.03f; repaint(); });
+        anim = new javax.swing.Timer(30, e -> {
+            glowPhase += 0.03f;
+            repaint();
+        });
         anim.start();
     }
 
-    @Override public void addNotify() { super.addNotify(); if (anim != null && !anim.isRunning()) anim.start(); }
-    @Override public void removeNotify() { if (anim != null) anim.stop(); super.removeNotify(); }
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
 
-    @Override protected void paintComponent(Graphics g) {
+    @Override
+    public void removeNotify() {
+        if (anim != null)
+            anim.stop();
+        super.removeNotify();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         Draw.antialias(g2);
         int w = getWidth(), h = getHeight();
 
-        g2.setPaint(new RadialGradientPaint(new Point2D.Float(w/2f, h*0.35f),
-                Math.max(w, h) * 0.9f, new float[]{0f, 1f},
-                new Color[]{new Color(0x152238), Tema.BG}));
+        g2.setPaint(new RadialGradientPaint(new Point2D.Float(w / 2f, h * 0.35f),
+                Math.max(w, h) * 0.9f, new float[] { 0f, 1f },
+                new Color[] { new Color(0x152238), Tema.BG }));
         g2.fillRect(0, 0, w, h);
 
         g2.setColor(new Color(0x22, 0xD3, 0xEE, 12));
-        for (int x = 0; x < w; x += 40) g2.drawLine(x, 0, x, h);
-        for (int y = 0; y < h; y += 40) g2.drawLine(0, y, w, y);
+        for (int x = 0; x < w; x += 40)
+            g2.drawLine(x, 0, x, h);
+        for (int y = 0; y < h; y += 40)
+            g2.drawLine(0, y, w, y);
 
         Random r = new Random(99);
         long t = System.currentTimeMillis();
@@ -954,14 +1040,16 @@ class HomePanel extends JPanel implements SceneLifecycle {
             double py = (r.nextInt(h) + t * 0.03 * (0.5 + r.nextDouble())) % h;
             int alpha = 30 + r.nextInt(70);
             g2.setColor(new Color(0x22, 0xD3, 0xEE, alpha));
-            g2.fillOval((int)px, (int)py, 2, 2);
+            g2.fillOval((int) px, (int) py, 2, 2);
         }
 
         Fx.scanlines(g2, w, h, 4);
         Fx.vignette(g2, w, h, 0.55f);
     }
 
-    @Override public void onEnter() {}
+    @Override
+    public void onEnter() {
+    }
 }
 
 // ============================================================
@@ -978,15 +1066,20 @@ class TheftPanel extends JPanel implements SceneLifecycle {
         setBackground(Tema.BG);
     }
 
-    @Override public void onEnter() {
+    @Override
+    public void onEnter() {
         t0 = System.currentTimeMillis();
         phase = 0;
-        if (timer != null) timer.stop();
+        if (timer != null)
+            timer.stop();
         timer = new javax.swing.Timer(30, e -> {
             long el = System.currentTimeMillis() - t0;
-            if (el < 2200)      phase = 0;
-            else if (el < 3400) phase = 1;
-            else                phase = 2;
+            if (el < 2200)
+                phase = 0;
+            else if (el < 3400)
+                phase = 1;
+            else
+                phase = 2;
             if (el > 6000) {
                 ((javax.swing.Timer) e.getSource()).stop();
                 app.showScene("REALIZE");
@@ -996,7 +1089,8 @@ class TheftPanel extends JPanel implements SceneLifecycle {
         timer.start();
     }
 
-    @Override protected void paintComponent(Graphics g) {
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         Draw.antialias(g2);
@@ -1020,7 +1114,7 @@ class TheftPanel extends JPanel implements SceneLifecycle {
             int sx = r.nextInt(w), sy = r.nextInt(h / 2);
             int a = 100 + r.nextInt(155);
             double twinkle = 0.6 + 0.4 * Math.sin(t / 300.0 + i);
-            g2.setColor(new Color(255, 255, 255, (int)(a * twinkle)));
+            g2.setColor(new Color(255, 255, 255, (int) (a * twinkle)));
             g2.fillRect(sx, sy, 2, 2);
         }
 
@@ -1040,7 +1134,8 @@ class TheftPanel extends JPanel implements SceneLifecycle {
         g2.setColor(new Color(0x252B38));
         g2.fillRect(0, h - 200, w, 4);
         g2.setColor(new Color(0xFFEB99));
-        for (int x = 20; x < w; x += 60) g2.fillRect(x, h - 100, 30, 3);
+        for (int x = 20; x < w; x += 60)
+            g2.fillRect(x, h - 100, 30, 3);
         for (int lx = 80; lx < w; lx += 320) {
             drawStreetLamp(g2, lx, h - 200);
         }
@@ -1056,7 +1151,7 @@ class TheftPanel extends JPanel implements SceneLifecycle {
             Draw.thiefSide(g2, tx, h - 195, 1.3, p * 25);
         } else if (phase == 1) {
             double p = (el - 2200) / 1200.0;
-            int alpha = (int)(255 * (1 - Math.min(1, p)));
+            int alpha = (int) (255 * (1 - Math.min(1, p)));
             Graphics2D gc = (Graphics2D) g2.create();
             gc.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha / 255f));
             Draw.thiefSide(gc, carX - 30, h - 195, 1.3, 0);
@@ -1069,19 +1164,22 @@ class TheftPanel extends JPanel implements SceneLifecycle {
             driveOffset = p * (w + 300);
         }
         if (phase >= 1) {
-            Fx.glow(g2, (int)(carX + driveOffset), (int)carY, 90, Tema.RED, 4);
+            Fx.glow(g2, (int) (carX + driveOffset), (int) carY, 90, Tema.RED, 4);
         }
         Draw.car(g2, carX + driveOffset, carY, 0,
                 phase >= 1 ? Tema.RED : new Color(0x3E5FA0),
                 false, phase >= 1, true);
 
         String dialog;
-        if (phase == 0)      dialog = "Malam yang tenang... tiba-tiba muncul seseorang!";
-        else if (phase == 1) dialog = "\"Hehehe... mobil ini milikku sekarang!\"";
-        else                 dialog = "Pencuri membawa mobil pergi!";
+        if (phase == 0)
+            dialog = "Malam yang tenang... tiba-tiba muncul seseorang!";
+        else if (phase == 1)
+            dialog = "\"Hehehe... mobil ini milikku sekarang!\"";
+        else
+            dialog = "Pencuri membawa mobil pergi!";
 
         int dw = 640, dh = 70;
-        int dx = w/2 - dw/2, dy = 44;
+        int dx = w / 2 - dw / 2, dy = 44;
         g2.setColor(new Color(0, 0, 0, 160));
         g2.fillRoundRect(dx + 4, dy + 6, dw, dh, 20, 20);
         g2.setColor(new Color(8, 12, 20, 220));
@@ -1129,9 +1227,11 @@ class RealizePanel extends JPanel implements SceneLifecycle {
         setBackground(Tema.BG);
     }
 
-    @Override public void onEnter() {
+    @Override
+    public void onEnter() {
         t0 = System.currentTimeMillis();
-        if (timer != null) timer.stop();
+        if (timer != null)
+            timer.stop();
         timer = new javax.swing.Timer(30, e -> {
             long el = System.currentTimeMillis() - t0;
             if (el > 5200) {
@@ -1143,7 +1243,8 @@ class RealizePanel extends JPanel implements SceneLifecycle {
         timer.start();
     }
 
-    @Override protected void paintComponent(Graphics g) {
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         Draw.antialias(g2);
@@ -1153,7 +1254,8 @@ class RealizePanel extends JPanel implements SceneLifecycle {
         g2.fillRect(0, 0, w, h);
 
         g2.setColor(new Color(255, 255, 255, 5));
-        for (int x = 0; x < w; x += 30) g2.drawLine(x, 0, x, h);
+        for (int x = 0; x < w; x += 30)
+            g2.drawLine(x, 0, x, h);
 
         g2.setColor(new Color(0x0A0C12));
         g2.fillRect(0, h - 200, w, 200);
@@ -1189,8 +1291,8 @@ class RealizePanel extends JPanel implements SceneLifecycle {
         g2.setColor(new Color(0x2A3444));
         g2.setStroke(new BasicStroke(6));
         g2.drawRect(jx, jy, jw, jh);
-        g2.drawLine(jx + jw/2, jy, jx + jw/2, jy + jh);
-        g2.drawLine(jx, jy + jh/2, jx + jw, jy + jh/2);
+        g2.drawLine(jx + jw / 2, jy, jx + jw / 2, jy + jh);
+        g2.drawLine(jx, jy + jh / 2, jx + jw, jy + jh / 2);
 
         drawSofa(g2, w - 520, h - 340);
         drawTable(g2, w - 420, h - 200);
@@ -1220,12 +1322,19 @@ class RealizePanel extends JPanel implements SceneLifecycle {
 
         String dialog;
         Color dlgAccent;
-        if (el < 2600)      { dialog = "Aku baru pulang... tapi terasa ada yang aneh."; dlgAccent = Tema.CYAN; }
-        else if (el < 4000) { dialog = "ASTAGA! Mobilku hilang dari halaman!"; dlgAccent = Tema.RED; }
-        else                { dialog = "Cepat ambil remote pintar!"; dlgAccent = Tema.AMBER; }
+        if (el < 2600) {
+            dialog = "Aku baru pulang... tapi terasa ada yang aneh.";
+            dlgAccent = Tema.CYAN;
+        } else if (el < 4000) {
+            dialog = "ASTAGA! Mobilku hilang dari halaman!";
+            dlgAccent = Tema.RED;
+        } else {
+            dialog = "Cepat ambil remote pintar!";
+            dlgAccent = Tema.AMBER;
+        }
 
         int dw = 700, dh = 76;
-        int dx = w/2 - dw/2, dy = 44;
+        int dx = w / 2 - dw / 2, dy = 44;
         g2.setColor(new Color(0, 0, 0, 160));
         g2.fillRoundRect(dx + 4, dy + 6, dw, dh, 22, 22);
         g2.setColor(new Color(8, 12, 20, 230));
@@ -1301,7 +1410,8 @@ class RemotePanel extends JPanel implements SceneLifecycle {
         box.setBorder(new EmptyBorder(40, 46, 40, 46));
 
         JPanel remote = new JPanel() {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 Draw.antialias(g2);
@@ -1310,20 +1420,20 @@ class RemotePanel extends JPanel implements SceneLifecycle {
                 Fx.glowRect(g2, 10, 10, w - 20, h - 20, 30, Tema.CYAN, 6);
 
                 g2.setPaint(new GradientPaint(0, 0, new Color(0x3A4458),
-                        0, h/2f, new Color(0x1A2130)));
+                        0, h / 2f, new Color(0x1A2130)));
                 g2.fillRoundRect(0, 0, w, h, 30, 30);
                 g2.setPaint(new GradientPaint(0, 0, new Color(255, 255, 255, 40),
-                        0, h/3f, new Color(255, 255, 255, 0)));
-                g2.fillRoundRect(4, 4, w - 8, h/3, 26, 26);
+                        0, h / 3f, new Color(255, 255, 255, 0)));
+                g2.fillRoundRect(4, 4, w - 8, h / 3, 26, 26);
                 g2.setColor(new Color(0x5A6478));
                 g2.setStroke(new BasicStroke(2));
                 g2.drawRoundRect(1, 1, w - 2, h - 2, 30, 30);
 
                 g2.setColor(new Color(0x2A3344));
-                g2.fillRoundRect(w/2 - 4, -22, 8, 28, 4, 4);
+                g2.fillRoundRect(w / 2 - 4, -22, 8, 28, 4, 4);
                 g2.setColor(Tema.CYAN);
-                g2.fillOval(w/2 - 5, -28, 10, 10);
-                Fx.glow(g2, w/2, -23, 26, Tema.CYAN, 5);
+                g2.fillOval(w / 2 - 5, -28, 10, 10);
+                Fx.glow(g2, w / 2, -23, 26, Tema.CYAN, 5);
 
                 int sx = 30, sy = 26, sw = w - 60, sh = 100;
                 g2.setColor(new Color(0x0A0D12));
@@ -1359,7 +1469,8 @@ class RemotePanel extends JPanel implements SceneLifecycle {
                 g2.drawString("STATUS: STOLEN", sx + sw - 130, sy + 70);
 
                 g2.setColor(new Color(0, 0, 0, 60));
-                for (int y = sy; y < sy + sh; y += 3) g2.fillRect(sx, y, sw, 1);
+                for (int y = sy; y < sy + sh; y += 3)
+                    g2.fillRect(sx, y, sw, 1);
 
                 int gy = sy + sh + 30;
                 for (int i = 0; i < 3; i++) {
@@ -1380,17 +1491,18 @@ class RemotePanel extends JPanel implements SceneLifecycle {
                         g2.setColor(new Color(0xB0BACE));
                         g2.setFont(Tema.F_MONOB);
                         FontMetrics fm = g2.getFontMetrics();
-                        String[] keys = {"1","2","3","4","5","6","7","8","9","*","0","#"};
-                        String k = keys[i*4 + j];
-                        g2.drawString(k, bxx + bw/2 - fm.stringWidth(k)/2, byy + bh/2 + 4);
+                        String[] keys = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#" };
+                        String k = keys[i * 4 + j];
+                        g2.drawString(k, bxx + bw / 2 - fm.stringWidth(k) / 2, byy + bh / 2 + 4);
                     }
                 }
 
-                int lx = w/2, ly = h - 18;
+                int lx = w / 2, ly = h - 18;
                 boolean on = (System.currentTimeMillis() / 400) % 2 == 0;
                 g2.setColor(on ? Tema.RED : new Color(0x3A1818));
                 g2.fillOval(lx - 5, ly - 5, 10, 10);
-                if (on) Fx.glow(g2, lx, ly, 16, Tema.RED, 3);
+                if (on)
+                    Fx.glow(g2, lx, ly, 16, Tema.RED, 3);
             }
         };
         remote.setOpaque(false);
@@ -1425,21 +1537,36 @@ class RemotePanel extends JPanel implements SceneLifecycle {
 
         add(box);
 
-        anim = new javax.swing.Timer(30, e -> { phase += 0.05f; repaint(); });
+        anim = new javax.swing.Timer(30, e -> {
+            phase += 0.05f;
+            repaint();
+        });
         anim.start();
     }
 
-    @Override public void addNotify() { super.addNotify(); if (anim != null && !anim.isRunning()) anim.start(); }
-    @Override public void removeNotify() { if (anim != null) anim.stop(); super.removeNotify(); }
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
 
-    @Override protected void paintComponent(Graphics g) {
+    @Override
+    public void removeNotify() {
+        if (anim != null)
+            anim.stop();
+        super.removeNotify();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         Draw.antialias(g2);
         int w = getWidth(), h = getHeight();
-        g2.setPaint(new RadialGradientPaint(new Point2D.Float(w/2f, h/2f),
-                Math.max(w, h) * 0.75f, new float[]{0f, 1f},
-                new Color[]{new Color(0x18283A), Tema.BG}));
+        g2.setPaint(new RadialGradientPaint(new Point2D.Float(w / 2f, h / 2f),
+                Math.max(w, h) * 0.75f, new float[] { 0f, 1f },
+                new Color[] { new Color(0x18283A), Tema.BG }));
         g2.fillRect(0, 0, w, h);
         Random r = new Random(11);
         long t = System.currentTimeMillis();
@@ -1447,12 +1574,14 @@ class RemotePanel extends JPanel implements SceneLifecycle {
             double px = (r.nextInt(w) + t * 0.05 * (0.5 + r.nextDouble())) % w;
             double py = (r.nextInt(h) + t * 0.04 * (0.5 + r.nextDouble())) % h;
             g2.setColor(new Color(0x22, 0xD3, 0xEE, 25 + r.nextInt(50)));
-            g2.fillOval((int)px, (int)py, 3, 3);
+            g2.fillOval((int) px, (int) py, 3, 3);
         }
         Fx.vignette(g2, w, h, 0.55f);
     }
 
-    @Override public void onEnter() {}
+    @Override
+    public void onEnter() {
+    }
 }
 
 // ============================================================
@@ -1509,7 +1638,8 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
 
     private JPanel buildMap() {
         mapArea = new JPanel() {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 paintMap((Graphics2D) g, getWidth(), getHeight());
             }
@@ -1533,21 +1663,21 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         Draw.cityMap(gs, Model.WORLD_W, Model.WORLD_H);
 
         gs.setColor(new Color(0x30, 0xD1, 0x58, 30));
-        gs.fillOval((int)model.houseX - 110, (int)model.houseY - 110, 220, 220);
+        gs.fillOval((int) model.houseX - 110, (int) model.houseY - 110, 220, 220);
         gs.setColor(new Color(0x30, 0xD1, 0x58, 140));
         gs.setStroke(new BasicStroke(2.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND,
-                1f, new float[]{10, 10}, 0));
-        gs.drawOval((int)model.houseX - 110, (int)model.houseY - 110, 220, 220);
+                1f, new float[] { 10, 10 }, 0));
+        gs.drawOval((int) model.houseX - 110, (int) model.houseY - 110, 220, 220);
         gs.setColor(new Color(0x30, 0xD1, 0x58, 80));
         gs.setStroke(new BasicStroke(1.5f));
-        gs.drawOval((int)model.houseX - 60, (int)model.houseY - 60, 120, 120);
+        gs.drawOval((int) model.houseX - 60, (int) model.houseY - 60, 120, 120);
 
         Draw.house(gs, model.houseX, model.houseY, 32);
 
         List<Point2D.Double> trail = model.trail;
         for (int i = 1; i < trail.size(); i++) {
             float a = (float) i / trail.size();
-            gs.setColor(new Color(0x22, 0xD3, 0xEE, (int)(a * 140)));
+            gs.setColor(new Color(0x22, 0xD3, 0xEE, (int) (a * 140)));
             gs.setStroke(new BasicStroke(1.2f + a * 2.2f, BasicStroke.CAP_ROUND,
                     BasicStroke.JOIN_ROUND));
             Point2D.Double p1 = trail.get(i - 1), p2 = trail.get(i);
@@ -1558,12 +1688,12 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         long now = System.currentTimeMillis();
         for (int i = 0; i < 3; i++) {
             double ph = ((now / 900.0) + i / 3.0) % 1.0;
-            int r = (int)(ph * 90);
-            int alpha = (int)((1 - ph) * 100);
+            int r = (int) (ph * 90);
+            int alpha = (int) ((1 - ph) * 100);
             gs.setColor(new Color(carColor.getRed(), carColor.getGreen(),
                     carColor.getBlue(), alpha));
             gs.setStroke(new BasicStroke(2f));
-            gs.drawOval((int)model.carX - r, (int)model.carY - r, r * 2, r * 2);
+            gs.drawOval((int) model.carX - r, (int) model.carY - r, r * 2, r * 2);
         }
 
         Draw.car(gs, model.carX, model.carY, model.carAngle,
@@ -1577,8 +1707,8 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         gs.setColor(carColor);
         String lbl = model.thiefInside ? "◉ TARGET" : "◉ MOBIL ANDA";
         FontMetrics fm = gs.getFontMetrics();
-        int lx = (int)model.carX + 26;
-        int ly = (int)model.carY - 32;
+        int lx = (int) model.carX + 26;
+        int ly = (int) model.carY - 32;
         gs.setColor(new Color(0, 0, 0, 160));
         gs.fillRoundRect(lx - 6, ly - 12, fm.stringWidth(lbl) + 12, 18, 6, 6);
         gs.setColor(carColor);
@@ -1602,17 +1732,21 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         g2.setColor(Tema.CYAN);
         g2.drawString("LEGENDA", 28, 34);
 
-        g2.setColor(Tema.GREEN); g2.fillOval(28, 48, 12, 12);
+        g2.setColor(Tema.GREEN);
+        g2.fillOval(28, 48, 12, 12);
         Fx.glow(g2, 34, 54, 14, Tema.GREEN, 2);
-        g2.setColor(Tema.TEXT); g2.setFont(Tema.F_LABEL);
+        g2.setColor(Tema.TEXT);
+        g2.setFont(Tema.F_LABEL);
         g2.drawString("Rumah (titik aman)", 48, 58);
 
-        g2.setColor(Tema.RED); g2.fillOval(28, 68, 12, 12);
+        g2.setColor(Tema.RED);
+        g2.fillOval(28, 68, 12, 12);
         Fx.glow(g2, 34, 74, 14, Tema.RED, 2);
         g2.setColor(Tema.TEXT);
         g2.drawString("Mobil dicuri", 48, 78);
 
-        g2.setColor(Tema.CYAN); g2.fillOval(28, 88, 12, 12);
+        g2.setColor(Tema.CYAN);
+        g2.fillOval(28, 88, 12, 12);
         Fx.glow(g2, 34, 94, 14, Tema.CYAN, 2);
         g2.setColor(Tema.TEXT);
         g2.drawString("Jejak pergerakan", 48, 98);
@@ -1668,7 +1802,7 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
             g2.setFont(Tema.F_BOLD);
             g2.drawString("⚠ PENCURI DI DALAM", x + 12, y + h - 6);
         } else if (model.thiefVisible) {
-            Draw.thiefSide(g2, x + w/2, y + h - 32, 0.75,
+            Draw.thiefSide(g2, x + w / 2, y + h - 32, 0.75,
                     System.currentTimeMillis() / 100.0);
         } else {
             g2.setColor(Tema.GREEN);
@@ -1721,7 +1855,7 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         t2.setAlignmentX(LEFT_ALIGNMENT);
 
         btnTrack = makeStep("1.    LACAK LOKASI", new Color(0x1F6FEB));
-        btnHack  = makeStep("2.    AMBIL ALIH KENDARAAN", Tema.PURPLE.darker());
+        btnHack = makeStep("2.    AMBIL ALIH KENDARAAN", Tema.PURPLE.darker());
         btnDoors = makeStep("3.    BUKA PINTU OTOMATIS", Tema.CYAN.darker());
         btnEject = makeStep("4.    KELUARKAN PENCURI", Tema.AMBER.darker());
         btnDrive = makeStep("5.    KONTROL MOBIL", Tema.GREEN.darker());
@@ -1738,11 +1872,16 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
 
         act.add(t2);
         act.add(Box.createVerticalStrut(12));
-        act.add(btnTrack);     act.add(Box.createVerticalStrut(7));
-        act.add(btnHack);      act.add(Box.createVerticalStrut(7));
-        act.add(hackBar);      act.add(Box.createVerticalStrut(7));
-        act.add(btnDoors);     act.add(Box.createVerticalStrut(7));
-        act.add(btnEject);     act.add(Box.createVerticalStrut(7));
+        act.add(btnTrack);
+        act.add(Box.createVerticalStrut(7));
+        act.add(btnHack);
+        act.add(Box.createVerticalStrut(7));
+        act.add(hackBar);
+        act.add(Box.createVerticalStrut(7));
+        act.add(btnDoors);
+        act.add(Box.createVerticalStrut(7));
+        act.add(btnEject);
+        act.add(Box.createVerticalStrut(7));
         act.add(btnDrive);
 
         side.add(tele);
@@ -1751,7 +1890,8 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         side.add(Box.createVerticalGlue());
 
         btnTrack.addActionListener(e -> {
-            if (!unlock(0)) return;
+            if (!unlock(0))
+                return;
             status("●  TRACKING AKTIF — target terdeteksi", Tema.CYAN);
             btnTrack.setEnabled(false);
             btnTrack.setText("✔   LOKASI TERLACAK");
@@ -1760,14 +1900,17 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         });
 
         btnHack.addActionListener(e -> {
-            if (!unlock(1)) return;
-            if (model.hacking) return;
+            if (!unlock(1))
+                return;
+            if (model.hacking)
+                return;
             model.hacking = true;
             hackBar.setVisible(true);
             hackBar.setValue(0);
             btnHack.setEnabled(false);
             status("●  MENEMBUS FIREWALL...", Tema.PURPLE);
-            if (hackTimer != null) hackTimer.stop();
+            if (hackTimer != null)
+                hackTimer.stop();
             hackTimer = new javax.swing.Timer(40, ev -> {
                 model.hackProgress += 0.012;
                 if (model.hackProgress >= 1) {
@@ -1778,14 +1921,15 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
                     fin.setRepeats(false);
                     fin.start();
                 } else {
-                    hackBar.setValue((int)(model.hackProgress * 100));
+                    hackBar.setValue((int) (model.hackProgress * 100));
                 }
             });
             hackTimer.start();
         });
 
         btnDoors.addActionListener(e -> {
-            if (!unlock(2)) return;
+            if (!unlock(2))
+                return;
             model.doorsOpen = true;
             btnDoors.setEnabled(false);
             btnDoors.setText("✔   PINTU TERBUKA");
@@ -1795,7 +1939,8 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         });
 
         btnEject.addActionListener(e -> {
-            if (!unlock(3)) return;
+            if (!unlock(3))
+                return;
             model.ejectThief();
             btnEject.setEnabled(false);
             btnEject.setText("✔   PENCURI KELUAR");
@@ -1805,7 +1950,8 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         });
 
         btnDrive.addActionListener(e -> {
-            if (!unlock(4)) return;
+            if (!unlock(4))
+                return;
             btnDrive.setEnabled(false);
             btnDrive.setText("✔   KONTROL PENUH AKTIF");
             status("●  KENDALI PENUH — arahkan mobil pulang", Tema.GREEN);
@@ -1841,10 +1987,14 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
     }
 
     private void refreshButtons() {
-        if (model.stage == 1) btnHack.setEnabled(true);
-        if (model.stage == 2) btnDoors.setEnabled(true);
-        if (model.stage == 3) btnEject.setEnabled(true);
-        if (model.stage == 4) btnDrive.setEnabled(true);
+        if (model.stage == 1)
+            btnHack.setEnabled(true);
+        if (model.stage == 2)
+            btnDoors.setEnabled(true);
+        if (model.stage == 3)
+            btnEject.setEnabled(true);
+        if (model.stage == 4)
+            btnDrive.setEnabled(true);
     }
 
     private JPanel buildArrowBar() {
@@ -1852,10 +2002,10 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         arrowPanel.setOpaque(false);
         arrowPanel.setVisible(false);
 
-        btnUp    = new ModernButton("   MAJU",   Tema.GREEN.darker());
-        btnDown  = new ModernButton("   MUNDUR", Tema.AMBER.darker());
-        btnLeft  = new ModernButton("  KIRI",   new Color(0x1F6FEB));
-        btnRight = new ModernButton("  KANAN",  new Color(0x1F6FEB));
+        btnUp = new ModernButton("   MAJU", Tema.GREEN.darker());
+        btnDown = new ModernButton("   MUNDUR", Tema.AMBER.darker());
+        btnLeft = new ModernButton("  KIRI", new Color(0x1F6FEB));
+        btnRight = new ModernButton("  KANAN", new Color(0x1F6FEB));
 
         btnUp.setPreferredSize(new Dimension(150, 48));
         btnDown.setPreferredSize(new Dimension(150, 48));
@@ -1870,44 +2020,54 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
     }
 
     private void installArrowKeys() {
-        pressHold(btnUp,    () -> model.throttle = 1,  () -> model.throttle = 0);
-        pressHold(btnDown,  () -> model.throttle = -1, () -> model.throttle = 0);
-        pressHold(btnLeft,  () -> model.steer = -1,    () -> model.steer = 0);
-        pressHold(btnRight, () -> model.steer = 1,     () -> model.steer = 0);
+        pressHold(btnUp, () -> model.throttle = 1, () -> model.throttle = 0);
+        pressHold(btnDown, () -> model.throttle = -1, () -> model.throttle = 0);
+        pressHold(btnLeft, () -> model.steer = -1, () -> model.steer = 0);
+        pressHold(btnRight, () -> model.steer = 1, () -> model.steer = 0);
 
         InputMap im = app.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap am = app.getRootPane().getActionMap();
-        bindKey(im, am, "W", KeyEvent.VK_W, () -> model.throttle = 1,  () -> model.throttle = 0);
+        bindKey(im, am, "W", KeyEvent.VK_W, () -> model.throttle = 1, () -> model.throttle = 0);
         bindKey(im, am, "S", KeyEvent.VK_S, () -> model.throttle = -1, () -> model.throttle = 0);
-        bindKey(im, am, "A", KeyEvent.VK_A, () -> model.steer = -1,    () -> model.steer = 0);
-        bindKey(im, am, "D", KeyEvent.VK_D, () -> model.steer = 1,     () -> model.steer = 0);
-        bindKey(im, am, "UP",    KeyEvent.VK_UP,    () -> model.throttle = 1,  () -> model.throttle = 0);
-        bindKey(im, am, "DOWN",  KeyEvent.VK_DOWN,  () -> model.throttle = -1, () -> model.throttle = 0);
-        bindKey(im, am, "LEFT",  KeyEvent.VK_LEFT,  () -> model.steer = -1,    () -> model.steer = 0);
-        bindKey(im, am, "RIGHT", KeyEvent.VK_RIGHT, () -> model.steer = 1,     () -> model.steer = 0);
+        bindKey(im, am, "A", KeyEvent.VK_A, () -> model.steer = -1, () -> model.steer = 0);
+        bindKey(im, am, "D", KeyEvent.VK_D, () -> model.steer = 1, () -> model.steer = 0);
+        bindKey(im, am, "UP", KeyEvent.VK_UP, () -> model.throttle = 1, () -> model.throttle = 0);
+        bindKey(im, am, "DOWN", KeyEvent.VK_DOWN, () -> model.throttle = -1, () -> model.throttle = 0);
+        bindKey(im, am, "LEFT", KeyEvent.VK_LEFT, () -> model.steer = -1, () -> model.steer = 0);
+        bindKey(im, am, "RIGHT", KeyEvent.VK_RIGHT, () -> model.steer = 1, () -> model.steer = 0);
     }
 
     private void bindKey(InputMap im, ActionMap am, String name, int code,
-                         Runnable on, Runnable off) {
+            Runnable on, Runnable off) {
         im.put(KeyStroke.getKeyStroke(code, 0, false), name + "_p");
-        im.put(KeyStroke.getKeyStroke(code, 0, true),  name + "_r");
+        im.put(KeyStroke.getKeyStroke(code, 0, true), name + "_r");
         am.put(name + "_p", new AbstractAction() {
-            public void actionPerformed(ActionEvent e) { on.run(); }
+            public void actionPerformed(ActionEvent e) {
+                on.run();
+            }
         });
         am.put(name + "_r", new AbstractAction() {
-            public void actionPerformed(ActionEvent e) { off.run(); }
+            public void actionPerformed(ActionEvent e) {
+                off.run();
+            }
         });
     }
 
     private void pressHold(JButton b, Runnable on, Runnable off) {
         b.getModel().addChangeListener(e -> {
-            if (b.getModel().isPressed()) on.run();
-            else off.run();
+            if (b.getModel().isPressed())
+                on.run();
+            else
+                off.run();
         });
     }
 
-    @Override public void onEnter() {
-        model.carX = 200; model.carY = 160; model.carAngle = 0; model.carSpeed = 0;
+    @Override
+    public void onEnter() {
+        model.carX = 200;
+        model.carY = 160;
+        model.carAngle = 0;
+        model.carSpeed = 0;
         model.trail.clear();
         model.stage = 0;
         model.thiefInside = true;
@@ -1918,11 +2078,16 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         model.hackProgress = 0;
         model.thiefWp = 0;
 
-        btnTrack.setEnabled(true);  btnTrack.setText("1.    LACAK LOKASI");
-        btnHack.setEnabled(false);  btnHack.setText("2.     AMBIL ALIH KENDARAAN");
-        btnDoors.setEnabled(false); btnDoors.setText("3.    BUKA PINTU OTOMATIS");
-        btnEject.setEnabled(false); btnEject.setText("4.    KELUARKAN PENCURI");
-        btnDrive.setEnabled(false); btnDrive.setText("5.    KONTROL MOBIL");
+        btnTrack.setEnabled(true);
+        btnTrack.setText("1.    LACAK LOKASI");
+        btnHack.setEnabled(false);
+        btnHack.setText("2.     AMBIL ALIH KENDARAAN");
+        btnDoors.setEnabled(false);
+        btnDoors.setText("3.    BUKA PINTU OTOMATIS");
+        btnEject.setEnabled(false);
+        btnEject.setText("4.    KELUARKAN PENCURI");
+        btnDrive.setEnabled(false);
+        btnDrive.setText("5.    KONTROL MOBIL");
 
         hackBar.setVisible(false);
         hackBar.setValue(0);
@@ -1944,23 +2109,31 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
     }
 
     private boolean checkWin() {
-        if (model.stage < 5) return false;
+        if (model.stage < 5)
+            return false;
         double dx = model.carX - model.houseX;
         double dy = model.carY - model.houseY;
         return Math.hypot(dx, dy) < 80 && Math.abs(model.carSpeed) < 1.2;
     }
 
     private void updateInfo() {
-        info1.setText(String.format("POSISI  : X=%d  Y=%d", (int)model.carX, (int)model.carY));
+        info1.setText(String.format("POSISI  : X=%d  Y=%d", (int) model.carX, (int) model.carY));
         String mode;
-        if (model.stage == 0) mode = "TRACKING";
-        else if (model.stage == 1) mode = "HACKING...";
-        else if (model.stage == 2) mode = "CONTROLLED";
-        else if (model.stage == 3) mode = "DOORS OPEN";
-        else if (model.stage == 4) mode = "EJECTING";
-        else mode = "FREE DRIVE";
+        if (model.stage == 0)
+            mode = "TRACKING";
+        else if (model.stage == 1)
+            mode = "HACKING...";
+        else if (model.stage == 2)
+            mode = "CONTROLLED";
+        else if (model.stage == 3)
+            mode = "DOORS OPEN";
+        else if (model.stage == 4)
+            mode = "EJECTING";
+        else
+            mode = "FREE DRIVE";
         info2.setText("MODE    : " + mode);
-        if (mapArea != null) mapArea.repaint();
+        if (mapArea != null)
+            mapArea.repaint();
     }
 
     private void status(String msg, Color c) {
@@ -2037,13 +2210,17 @@ class WinPanel extends JPanel implements SceneLifecycle {
 
         add(wrap);
 
-        anim = new javax.swing.Timer(30, e -> { phase += 0.03f; repaint(); });
+        anim = new javax.swing.Timer(30, e -> {
+            phase += 0.03f;
+            repaint();
+        });
         anim.start();
     }
 
     private JPanel statBadge(String icon, String label, String value, Color c) {
         JPanel p = new JPanel() {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 Draw.antialias(g2);
@@ -2070,41 +2247,57 @@ class WinPanel extends JPanel implements SceneLifecycle {
         v.setFont(new Font("Segoe UI", Font.BOLD, 14));
         v.setForeground(c);
         v.setAlignmentX(CENTER_ALIGNMENT);
-        p.add(i); p.add(Box.createVerticalStrut(4));
-        p.add(l); p.add(Box.createVerticalStrut(2));
+        p.add(i);
+        p.add(Box.createVerticalStrut(4));
+        p.add(l);
+        p.add(Box.createVerticalStrut(2));
         p.add(v);
         return p;
     }
 
-    @Override public void addNotify() { super.addNotify(); if (anim != null && !anim.isRunning()) anim.start(); }
-    @Override public void removeNotify() { if (anim != null) anim.stop(); super.removeNotify(); }
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
 
-    @Override protected void paintComponent(Graphics g) {
+    @Override
+    public void removeNotify() {
+        if (anim != null)
+            anim.stop();
+        super.removeNotify();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         Draw.antialias(g2);
         int w = getWidth(), h = getHeight();
 
-        g2.setPaint(new RadialGradientPaint(new Point2D.Float(w/2f, h/2f),
-                Math.max(w, h) * 0.75f, new float[]{0f, 1f},
-                new Color[]{new Color(0x0E2A1A), Tema.BG}));
+        g2.setPaint(new RadialGradientPaint(new Point2D.Float(w / 2f, h / 2f),
+                Math.max(w, h) * 0.75f, new float[] { 0f, 1f },
+                new Color[] { new Color(0x0E2A1A), Tema.BG }));
         g2.fillRect(0, 0, w, h);
 
         Random r = new Random(2024);
         long t = System.currentTimeMillis();
-        Color[] cols = {Tema.GREEN, Tema.CYAN, Tema.AMBER, Tema.PURPLE, Tema.GOLD};
+        Color[] cols = { Tema.GREEN, Tema.CYAN, Tema.AMBER, Tema.PURPLE, Tema.GOLD };
         for (int i = 0; i < 60; i++) {
             double cx = (r.nextInt(w) + t * 0.03 * (0.5 + r.nextDouble())) % w;
             double cy = (r.nextInt(h) + t * 0.06 * (0.5 + r.nextDouble())) % h;
             g2.setColor(cols[i % cols.length]);
-            g2.fillRect((int)cx, (int)cy, 4, 8);
+            g2.fillRect((int) cx, (int) cy, 4, 8);
         }
 
-        Fx.glow(g2, w/2, h/2, 300, Tema.GREEN, 6);
+        Fx.glow(g2, w / 2, h / 2, 300, Tema.GREEN, 6);
         Fx.vignette(g2, w, h, 0.6f);
     }
 
-    @Override public void onEnter() {}
+    @Override
+    public void onEnter() {
+    }
 }
 
 // ============================================================
@@ -2118,8 +2311,10 @@ public class Simulator extends JFrame {
     private final javax.swing.Timer loop;
 
     public Simulator() {
-        try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
-        catch (Exception ignored) {}
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored) {
+        }
 
         setTitle("Smart Car Security — Simulator");
         setSize(1360, 860);
@@ -2129,18 +2324,19 @@ public class Simulator extends JFrame {
 
         root.setBackground(Tema.BG);
 
-        root.add(new HomePanel(this, model),    "HOME");
-        root.add(new TheftPanel(this, model),   "THEFT");
+        root.add(new HomePanel(this, model), "HOME");
+        root.add(new TheftPanel(this, model), "THEFT");
         root.add(new RealizePanel(this, model), "REALIZE");
-        root.add(new RemotePanel(this, model),  "REMOTE");
-        root.add(new LaptopPanel(this, model),  "LAPTOP");
-        root.add(new WinPanel(this, model),     "WIN");
+        root.add(new RemotePanel(this, model), "REMOTE");
+        root.add(new LaptopPanel(this, model), "LAPTOP");
+        root.add(new WinPanel(this, model), "WIN");
 
         setContentPane(root);
 
         loop = new javax.swing.Timer(16, e -> {
             model.update(0.016);
-            if (currentPanel != null) currentPanel.repaint();
+            if (currentPanel != null)
+                currentPanel.repaint();
         });
         loop.start();
 
@@ -2153,7 +2349,8 @@ public class Simulator extends JFrame {
         for (Component c : root.getComponents()) {
             if (c.isVisible()) {
                 currentPanel = (JPanel) c;
-                if (c instanceof SceneLifecycle) ((SceneLifecycle) c).onEnter();
+                if (c instanceof SceneLifecycle)
+                    ((SceneLifecycle) c).onEnter();
                 break;
             }
         }
