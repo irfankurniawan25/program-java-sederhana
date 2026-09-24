@@ -1952,6 +1952,7 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         btnDrive.addActionListener(e -> {
             if (!unlock(4))
                 return;
+            model.doorsOpen = false;
             btnDrive.setEnabled(false);
             btnDrive.setText("✔   KONTROL PENUH AKTIF");
             status("●  KENDALI PENUH — arahkan mobil pulang", Tema.GREEN);
