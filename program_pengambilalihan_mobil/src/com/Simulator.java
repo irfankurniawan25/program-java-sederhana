@@ -1590,6 +1590,8 @@ class RemotePanel extends JPanel implements SceneLifecycle {
 class LaptopPanel extends JPanel implements SceneLifecycle {
     private final Simulator app;
     private final Model model;
+    private boolean isWinning = false;
+    private long winTime = 0;
 
     private ModernButton btnTrack, btnHack, btnDoors, btnEject, btnDrive;
     private ModernButton btnUp, btnDown, btnLeft, btnRight;
@@ -1713,6 +1715,14 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         gs.fillRoundRect(lx - 6, ly - 12, fm.stringWidth(lbl) + 12, 18, 6, 6);
         gs.setColor(carColor);
         gs.drawString(lbl, lx, ly);
+
+        if (isWinning) {
+            long el = System.currentTimeMillis() - winTime;
+            double p = Math.min(1.0, el / 2000.0);
+            double ox = model.houseX + p * 60;
+            double oy = model.houseY + 20;
+            Draw.player(gs, ox, oy, 0.7);
+        }
 
         gs.dispose();
 
@@ -2078,6 +2088,8 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         model.hacking = false;
         model.hackProgress = 0;
         model.thiefWp = 0;
+        isWinning = false;
+        winTime = 0;
 
         btnTrack.setEnabled(true);
         btnTrack.setText("1.    LACAK LOKASI");
@@ -2096,14 +2108,18 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         status("●  TRACKING — menunggu perintah", Tema.AMBER);
 
         javax.swing.Timer t = new javax.swing.Timer(80, e -> {
-            if (model.scene != Scene.LAPTOP) {
-                ((javax.swing.Timer) e.getSource()).stop();
-                return;
+            if (checkWin() && !isWinning) {
+                isWinning = true;
+                winTime = System.currentTimeMillis();
+                status(" MOBIL TIBA DI RUMAH", Tema.GREEN);
+                arrowPanel.setVisible(false);
             }
-            updateInfo();
-            if (checkWin()) {
-                ((javax.swing.Timer) e.getSource()).stop();
-                app.showScene("WIN");
+            if (isWinning) {
+                long elapsed = System.currentTimeMillis() - winTime;
+                if (elapsed > 3000) {
+                    ((javax.swing.Timer) e.getSource()).stop();
+                    app.showScene("WIN");
+                }
             }
         });
         t.start();
