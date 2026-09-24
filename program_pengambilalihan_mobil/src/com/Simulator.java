@@ -322,8 +322,8 @@ class Model {
         thiefPath.add(new double[] { 530, 550 });
         thiefPath.add(new double[] { 930, 550 });
         thiefPath.add(new double[] { 930, 310 });
-        thiefPath.add(new double[] { 900, 310 });
-        thiefPath.add(new double[] { 850, 310 });
+        thiefPath.add(new double[] { 530, 310 });
+        thiefPath.add(new double[] { 530, 695 });
     }
 
     public void update(double dt) {
@@ -2108,6 +2108,11 @@ class LaptopPanel extends JPanel implements SceneLifecycle {
         status("●  TRACKING — menunggu perintah", Tema.AMBER);
 
         javax.swing.Timer t = new javax.swing.Timer(80, e -> {
+            if (model.scene != Scene.LAPTOP) {
+                ((javax.swing.Timer) e.getSource()).stop();
+                return;
+            }
+            updateInfo();
             if (checkWin() && !isWinning) {
                 isWinning = true;
                 winTime = System.currentTimeMillis();
